@@ -1,0 +1,12 @@
+.qr-code-wrapper {
+  display: block; /* Stellt sicher, dass margin:auto funktioniert */
+  margin: 20px auto; /* 20px oben/unten, automatisch links/rechts = zentriert */
+  max-width: 300px; /* Maximale Breite des QR-Codes */
+  width: 100%; /* Passt sich dem Container an, bis max-width erreicht ist */
+}
+
+.qr-code-wrapper img {
+  display: block; /* Verhindert kleine Lücken unter dem Bild */
+  width: 100%;
+  height: auto; /* Wichtig für die Skalierung */
+}

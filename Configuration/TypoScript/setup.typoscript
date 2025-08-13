@@ -1,0 +1,16 @@
+page.includeCSS.qrcodegenerator = EXT:qrcodegenerator/Resources/Public/Css/styles.css
+
+tt_content.qrcodegenerator_pi1 =< lib.contentElement
+tt_content.qrcodegenerator_pi1 {
+    templateName = Show
+    templateRootPaths.10 = EXT:qrcodegenerator/Resources/Private/Templates/
+    dataProcessing {
+        10 = Rcdesign\QrCodeGenerator\DataProcessing\QrCodeDataProcessor
+    }
+}
+
+plugin.tx_qrcodegenerator {
+    persistence {
+        storagePid =  # Optional: Deine PID mit Inhalt
+    }
+}

@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:spaceless>
+
+  <f:comment>
+    <img src="{qrCodeUri}" alt="QR Code" style="max-width: 300px;" />
+    <p>Encoded Text: {data.qrcode_text}</p>
+  </f:comment>
+
+  <f:if condition="{data.qrcode_type} == 'text'">
+    <p>{data.qrcode_text}</p>
+  </f:if>
+
+  <f:if condition="{data.qrcode_type} == 'sepa'">
+    <p>Empfänger: {data.qrcode_recipient}</p>
+    <p>IBAN: {data.qrcode_iban}</p>
+    <p>Betrag: {data.qrcode_amount} EUR</p>
+    <p>Verwendungszweck: {data.qrcode_purpose}</p>
+  </f:if>
+
+  <img src="{qrCodeUri}" alt="QR Code">
+
+</f:spaceless>
+
+</html>

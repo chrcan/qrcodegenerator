@@ -1,0 +1,10 @@
+plugin.tx_qrcodegenerator {
+    view {
+        templateRootPaths.0 = EXT:qrcodegenerator/Resources/Private/Templates/
+        partialRootPaths.0 = EXT:qrcodegenerator/Resources/Private/Partials/
+        layoutRootPaths.0 = EXT:qrcodegenerator/Resources/Private/Layouts/
+    }
+    settings {
+        cssFile = EXT:qrcodegenerator/Resources/Public/Css/styles.css
+    }
+}

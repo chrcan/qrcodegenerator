@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2025-08-11T15:00:00Z" product-name="qrcodegenerator">
+        <header/>
+        <body>
+            <trans-unit id="tt_content.CType.qrcodegenerator">
+                <source>QR Code Generator</source>
+            </trans-unit>
+            <trans-unit id="tt_content.CType.qrcodegenerator.description">
+				<source>Create a QR code to enter a text, link or even bank details with payments.</source>
+			</trans-unit>
+            <trans-unit id="qrcode_text">
+                <source>Text or URL for the QR Code</source>
+            </trans-unit>
+            <trans-unit id="qrcode_type">
+                <source>QR Code Type</source>
+            </trans-unit>
+            <trans-unit id="qrcode_amount">
+                <source>Amount (EUR)</source>
+            </trans-unit>
+            <trans-unit id="qrcode_iban">
+                <source>IBAN</source>
+            </trans-unit>
+            <trans-unit id="qrcode_recipient">
+                <source>Recipient</source>
+            </trans-unit>
+            <trans-unit id="qrcode_purpose">
+                <source>Purpose</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
