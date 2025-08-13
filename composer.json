@@ -3,6 +3,9 @@
   "type": "typo3-cms-extension",
   "description": "Generiert einen QR-Code im Frontend.",
   "version": "1.0.0",
+  "license": [
+    "GPL-2.0-or-later"
+  ],
   "authors": [
     {
       "name": "Christian Racan",
