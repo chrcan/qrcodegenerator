@@ -9,35 +9,11 @@ declare(strict_types=1);
  * _________________________________________________
  */
 
-defined('TYPO3') or die();
+defined('TYPO3') || die();
 
-use Rcdesign\QrCodeGenerator\Controller\QrCodeController;
 use Rcdesign\QrCodeGenerator\Preview\QrCodePreviewRenderer;
-use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
-use TYPO3\CMS\Core\Imaging\IconRegistry;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 
 call_user_func(function (): void {
-    // Icon Registry
-    $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
-    $iconRegistry->registerIcon(
-        'tx-qrcodegenerator-svgicon',
-        SvgIconProvider::class,
-        ['source' => 'EXT:qrcodegenerator/Resources/Public/Icons/Extension.svg']
-    );
-    // Plugin Registrierung
-    ExtensionUtility::configurePlugin(
-        'qrcodegenerator',
-        'Pi1',
-        [
-            QrCodeController::class => 'show',
-        ],
-        // keine Cache-Actions für Frontend
-        [],
-        // keine Cache-Actions für Backend
-        null
-    );
 
     // PreviewRenderer für Backend
     $GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1567890123] = [
