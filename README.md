@@ -2,7 +2,7 @@
 
 ## Übersicht
 
-Die Extension **`qrcodegenerator`** ermöglicht das einfache Erstellen und Einbinden von QR-Codes in TYPO3-Inhalten.  
+Die Extension **`qrcodegenerator`** ermöglicht das einfache Erstellen und Einbinden von QR-Codes in TYPO3-Inhalten.
 Unterstützt werden sowohl einfache Text-QR-Codes als auch komplexere Codes, z. B. SEPA-Zahlungsinformationen für Telebanking.
 
 ---
@@ -67,6 +67,11 @@ Anschließend die Extension im TYPO3-Backend aktivieren.
 
 ## Changelog
 
+**2.0.0**
+
+- Update für TYPO3 v14
+- RowUpdater funktioniert nicht!
+
 **1.0.0**
 
 - Initiale Version mit Text- und SEPA-QR-Code-Unterstützung
@@ -77,7 +82,7 @@ Anschließend die Extension im TYPO3-Backend aktivieren.
 
 ## Lizenz
 
-Diese Extension ist unter der **MIT-Lizenz** veröffentlicht.  
+Diese Extension ist unter der **MIT-Lizenz** veröffentlicht.
 Siehe [LICENSE](LICENSE) für weitere Informationen.
 
 ---

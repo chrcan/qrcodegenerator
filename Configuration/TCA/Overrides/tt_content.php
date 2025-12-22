@@ -9,18 +9,21 @@ declare(strict_types=1);
  * _________________________________________________
  */
 
-defined('TYPO3') or die();
+defined('TYPO3') || die();
 
+use Rcdesign\QrCodeGenerator\Preview\QrCodePreviewRenderer;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
+// Plugin registrieren - DAS IST AUSREICHEND
 ExtensionManagementUtility::addPlugin(
     [
-        'LLL:EXT:qrcodegenerator/Resources/Private/Language/locallang_db.xlf:tt_content.CType.qrcodegenerator',
-        'qrcodegenerator_pi1',
-        'tx-qrcodegenerator-svgicon',
+        'label' => 'LLL:EXT:qrcodegenerator/Resources/Private/Language/locallang_db.xlf:tt_content.CType.qrcodegenerator',
+        'value' => 'qrcodegenerator_pi1',
+        'icon' => 'tx-qrcodegenerator-svgicon',
+        'description' => 'LLL:EXT:qrcodegenerator/Resources/Private/Language/locallang_db.xlf:tt_content.CType.qrcodegenerator.description',
     ],
     'CType',
-    'qrcodegenerator'
+    'qrcodegenerator'  // Extension-Name
 );
 
 // Neue Felder hinzufügen
@@ -32,8 +35,8 @@ $newColumns = [
             'type' => 'select',
             'renderType' => 'selectSingle',
             'items' => [
-                ['Text', 'text'],
-                ['SEPA Zahlung', 'sepa'],
+                ['label' => 'Text', 'value' => 'text'],
+                ['label' => 'SEPA Zahlung', 'value' => 'sepa'],
             ],
             'default' => 'text',
         ],
@@ -45,7 +48,8 @@ $newColumns = [
         'config' => [
             'type' => 'input',
             'size' => 50,
-            'eval' => 'trim,required',
+            'eval' => 'trim',
+            'required' => true,
         ],
     ],
     'qrcode_amount' => [
@@ -53,8 +57,9 @@ $newColumns = [
         'label' => 'LLL:EXT:qrcodegenerator/Resources/Private/Language/locallang_db.xlf:qrcode_amount',
         'displayCond' => 'FIELD:qrcode_type:=:sepa',
         'config' => [
-            'type' => 'input',
-            'eval' => 'trim,double2',
+            'type' => 'number',
+            'eval' => 'trim',
+            'format' => 'decimal',
         ],
     ],
     'qrcode_iban' => [
@@ -91,7 +96,9 @@ ExtensionManagementUtility::addTCAcolumns('tt_content', $newColumns);
 
 // Felder in Showitem definieren
 $GLOBALS['TCA']['tt_content']['types']['qrcodegenerator_pi1']['showitem'] = '
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
     --palette--;;general,
+    --palette--;;headers,
     qrcode_type,
     qrcode_text,
     qrcode_amount,
@@ -101,20 +108,12 @@ $GLOBALS['TCA']['tt_content']['types']['qrcodegenerator_pi1']['showitem'] = '
     --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
     --palette--;;hidden,
     --palette--;;access,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+    rowDescription,
+    --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended,
 ';
 
 $GLOBALS['TCA']['tt_content']['types']['qrcodegenerator_pi1']['previewRenderer']
-    = Rcdesign\QrCodeGenerator\Preview\QrCodePreviewRenderer::class;
+    = QrCodePreviewRenderer::class;
 
 $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes']['qrcodegenerator_pi1'] = 'tx-qrcodegenerator-svgicon';
-
-// Wizard-Eintrag ergänzen für description
-$GLOBALS['TCA']['tt_content']['ctrl']['descriptionColumn'] = 'description';
-
-$GLOBALS['TCA']['tt_content']['columns']['CType']['config']['items'][] = [
-    'label' => 'LLL:EXT:qrcodegenerator/Resources/Private/Language/locallang_db.xlf:tt_content.CType.qrcodegenerator',
-    'value' => 'qrcodegenerator_pi1',
-    'icon' => 'tx-qrcodegenerator-svgicon',
-    'description' => 'LLL:EXT:qrcodegenerator/Resources/Private/Language/locallang_db.xlf:tt_content.CType.qrcodegenerator.description',
-    'group' => 'plugins',
-];

@@ -14,6 +14,7 @@ namespace Rcdesign\QrCodeGenerator\Preview;
 use Rcdesign\QrCodeGenerator\Service\QrCodeService;
 use TYPO3\CMS\Backend\Preview\PreviewRendererInterface;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
+use TYPO3\CMS\Core\Domain\Record;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class QrCodePreviewRenderer implements PreviewRendererInterface
@@ -33,10 +34,18 @@ class QrCodePreviewRenderer implements PreviewRendererInterface
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
         $record = $item->getRecord();
-        $uri = $this->qrCodeService->generateDataUri($record['qrcode_text'] ?? '', 150);
+        // WICHTIG: getRecord() gibt nun ein Record-Objekt zurück, kein Array
+        $qrCodeText = '';
+        if ($record instanceof Record) {
+            // Zugriff auf Felder über die get() Methode des Record-Objekts
+            $qrCodeText = (string)($record->get('qrcode_text') ?? '');
+        }
 
-        return $uri ? '<img src="' . $uri . '" alt="QR Code" style="max-width:150px;height:auto;">'
-                    : '<em>Bitte geben Sie einen Text für den QR-Code ein.</em>';
+        $uri = $this->qrCodeService->generateDataUri($qrCodeText, 150);
+
+        return $uri !== '' && $uri !== '0'
+            ? '<img src="' . htmlspecialchars($uri) . '" alt="QR Code" style="max-width:150px;height:auto;">'
+            : '<em>Bitte geben Sie einen Text für den QR-Code ein.</em>';
     }
 
     public function renderPageModulePreviewFooter(GridColumnItem $item): string
@@ -51,7 +60,11 @@ class QrCodePreviewRenderer implements PreviewRendererInterface
 
     public function supports(GridColumnItem $item): bool
     {
-        return $item->getTable() === 'tt_content'
-            && ($item->getRecord()['CType'] ?? '') === 'qrcodegenerator_pi1';
+        $record = $item->getRecord();
+        if ($record instanceof Record) {
+            return $item->getTable() === 'tt_content'
+                && $record->get('CType') === 'qrcodegenerator_pi1';
+        }
+        return false;
     }
 }

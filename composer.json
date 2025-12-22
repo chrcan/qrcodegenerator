@@ -1,29 +1,41 @@
 {
-  "name": "rcdesign/qrcodegenerator",
-  "type": "typo3-cms-extension",
-  "description": "Generiert einen QR-Code im Frontend.",
-  "version": "1.0.0",
-  "license": [
-    "GPL-2.0-or-later"
-  ],
-  "authors": [
-    {
-      "name": "Christian Racan",
-      "email": "werbegrafik@rc-design.at"
-    }
-  ],
-  "require": {
-    "typo3/cms-core": "^13.0",
-    "endroid/qr-code": "^5.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "Rcdesign\\QrCodeGenerator\\": "Classes/"
-    }
-  },
-  "extra": {
-    "typo3/cms": {
-      "extension-key": "qrcodegenerator"
-    }
-  }
+	"name": "rcdesign/qrcodegenerator",
+	"description": "Generiert einen QR-Code im Frontend.",
+	"license": [
+		"GPL-2.0-or-later"
+	],
+	"type": "typo3-cms-extension",
+	"version": "2.0.0",
+	"authors": [
+		{
+			"name": "Christian Racan",
+			"email": "werbegrafik@rc-design.at"
+		}
+	],
+	"require": {
+		"endroid/qr-code": "^5.0",
+		"typo3/cms-core": "^13.0 || ^14.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Rcdesign\\QrCodeGenerator\\": "Classes/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Rcdesign\\QrCodeGenerator\\Tests\\": "Tests/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"ergebnis/composer-normalize": true,
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		}
+	},
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "qrcodegenerator"
+		}
+	}
 }
