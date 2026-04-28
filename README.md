@@ -90,7 +90,6 @@ Siehe [LICENSE](LICENSE) für weitere Informationen.
 ## Support & Kontakt
 
 - GitHub: [rcdesign/qrcodegenerator](https://github.com/chrcan/qrcodegenerator)
-- E-Mail: [werbegrafik@rc-design.at](mailto:werbegrafik@rc-design.at)
 
 ---
 
