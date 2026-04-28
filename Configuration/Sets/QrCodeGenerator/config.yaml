@@ -1,0 +1,4 @@
+name: rcdesign/qrcodegenerator
+label: QR Code Generator
+dependencies:
+  - typo3/fluid-styled-content
