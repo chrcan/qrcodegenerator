@@ -1,0 +1,69 @@
+name: Continuous Integration (CI)
+
+on:
+  push:
+    branches:
+      - "main"
+      - "[0-9]+.*"
+    paths-ignore:
+      - ".ddev/**"
+      - ".vscode/**"
+      - "**.rst"
+  pull_request:
+    paths-ignore:
+      - ".ddev/**"
+      - ".vscode/**"
+      - "**.rst"
+
+env:
+  COMPOSER_FLAGS: --ansi --no-interaction --no-progress
+  COMPOSER_INSTALL_FLAGS: --prefer-dist --no-scripts --no-plugins
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  validation:
+    name: Composer validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: latest
+          tools: composer
+          coverage: none
+          extensions: intl, zip
+
+      - name: Install dependencies
+        run: composer install ${{ env.COMPOSER_INSTALL_FLAGS }} ${{ env.COMPOSER_FLAGS }}
+
+      - name: Validate composer.json
+        run: composer ci:composer:validate
+
+      - name: Normalize composer.json
+        run: composer ci:composer:normalize
+
+  php_coding_standards:
+    name: PHP Coding Standards
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer
+          coverage: none
+          extensions: intl, zip
+
+      - name: Install dependencies
+        run: composer install ${{ env.COMPOSER_INSTALL_FLAGS }} ${{ env.COMPOSER_FLAGS }}
+
+      - name: PHP Coding Standards
+        run: composer ci:php:cs-fixer
