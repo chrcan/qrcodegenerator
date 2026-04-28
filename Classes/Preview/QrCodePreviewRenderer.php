@@ -34,11 +34,11 @@ class QrCodePreviewRenderer implements PreviewRendererInterface
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {
         $record = $item->getRecord();
-        // WICHTIG: getRecord() gibt nun ein Record-Objekt zurück, kein Array
         $qrCodeText = '';
         if ($record instanceof Record) {
-            // Zugriff auf Felder über die get() Methode des Record-Objekts
             $qrCodeText = (string)($record->get('qrcode_text') ?? '');
+        } elseif (is_array($record)) {
+            $qrCodeText = (string)($record['qrcode_text'] ?? '');
         }
 
         $uri = $this->qrCodeService->generateDataUri($qrCodeText, 150);
@@ -64,6 +64,10 @@ class QrCodePreviewRenderer implements PreviewRendererInterface
         if ($record instanceof Record) {
             return $item->getTable() === 'tt_content'
                 && $record->get('CType') === 'qrcodegenerator_pi1';
+        }
+        if (is_array($record)) {
+            return $item->getTable() === 'tt_content'
+                && ($record['CType'] ?? '') === 'qrcodegenerator_pi1';
         }
         return false;
     }
