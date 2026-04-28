@@ -1,11 +1,8 @@
 {
 	"name": "rcdesign/qrcodegenerator",
 	"description": "Generiert einen QR-Code im Frontend.",
-	"license": [
-		"GPL-2.0-or-later"
-	],
+	"license": "GPL-3.0-or-later",
 	"type": "typo3-cms-extension",
-	"version": "2.0.0",
 	"authors": [
 		{
 			"name": "Christian Racan",
@@ -15,6 +12,7 @@
 	],
 	"homepage": "https://www.rc-design.at",
 	"require": {
+		"php": ">=8.1",
 		"endroid/qr-code": "^5.0",
 		"typo3/cms-core": "^13.0 || ^14.0"
 	},
