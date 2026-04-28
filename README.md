@@ -59,7 +59,7 @@ Anschließend die Extension im TYPO3-Backend aktivieren.
 
 ## Entwicklung
 
-- Basiert auf **TYPO3 v13**, **Extbase** und **Fluid**
+- Basiert auf **TYPO3**, **Extbase** und **Fluid**
 - QR-Code-Erzeugung über eigenen `QrCodeService`
 - Nutzung der Library [endroid/qr-code](https://github.com/endroid/qr-code)
 
