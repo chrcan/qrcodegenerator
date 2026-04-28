@@ -65,21 +65,6 @@ Anschließend die Extension im TYPO3-Backend aktivieren.
 
 ---
 
-## Changelog
-
-**2.0.0**
-
-- Update für TYPO3 v14
-- RowUpdater funktioniert nicht!
-
-**1.0.0**
-
-- Initiale Version mit Text- und SEPA-QR-Code-Unterstützung
-- Backend-Preview mit QR-Code-Vorschau
-- Extbase Controller und DataProcessor für flexible Verarbeitung
-
----
-
 ## Lizenz
 
 Diese Extension ist unter der **MIT-Lizenz** veröffentlicht.
